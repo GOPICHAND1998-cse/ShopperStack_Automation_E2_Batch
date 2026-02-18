@@ -1,5 +1,6 @@
 package utilityPackage;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -39,6 +40,25 @@ public class ActionsUtility
 
     public void scrollTillElement(WebElement element)
     {
-        action.scrollToElement(wait.until(ExpectedConditions.elementToBeClickable(element))).perform();
+//        action.scrollToElement(wait.until(ExpectedConditions.elementToBeClickable(element))).perform();
+
+        for(;;)
+        {
+            if (element.isDisplayed())
+            {
+                break;
+            }
+
+            try{
+                Thread.sleep(100);
+            }
+            catch (Exception e) {
+                e.getMessage();
+            }
+
+            action.keyDown(Keys.ARROW_DOWN)
+                    .keyUp(Keys.ARROW_DOWN)
+                    .perform();
+        }
     }
 }

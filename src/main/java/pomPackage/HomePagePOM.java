@@ -21,6 +21,7 @@ public class HomePagePOM
     private By kidsLink = By.xpath("//a[text()='Kids']");
     private By electronicLink = By.xpath("//a[text()='Electronic']");
     private By beautyLink = By.xpath("//a[text()='Beauty']");
+    private By desiredProd = By.xpath("//img[contains(@src,'https://m.media-amazon.com/images/I/612Vt0kgNeL._SX679_.jpg')]");
 
     private By allProducts = By.xpath("//div[contains(@class,'MuiPaper-root MuiCard-root featuredProducts_productCard__xe40f MuiPaper-elevation1 MuiPaper-rounded aos-init aos-animate')]");
 
@@ -60,6 +61,11 @@ public class HomePagePOM
         return driver.findElement(beautyLink);
     }
 
+    public WebElement getDesiredProd()
+    {
+        return driver.findElement(desiredProd);
+    }
+
     public List<WebElement> getAllProducts()
     {
         return wait.until(ExpectedConditions.visibilityOfAllElements(driver.findElements(allProducts)));
@@ -69,7 +75,7 @@ public class HomePagePOM
     {
         for(WebElement element: getAllProducts())
         {
-            Thread.sleep(1000);
+            Thread.sleep(100);
 
            String itemName=  element.findElement(By.xpath("descendant::div[@class='featuredProducts_footerLeft__PmkNa']/span[1]")).getText();
 

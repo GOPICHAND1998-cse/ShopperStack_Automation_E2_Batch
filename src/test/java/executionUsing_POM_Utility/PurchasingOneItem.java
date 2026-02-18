@@ -68,9 +68,23 @@ public class PurchasingOneItem
 
         Thread.sleep(4000);
 
-        jsUtil.scrollFullPage();
+//        jsUtil.scrollFullPage();
 
-        home.selectDesiredProduct("BOAT");
+        actionUtil.scrollTillElement(home.getDesiredProd());
+
+        home.selectDesiredProduct("FIREBOLT");
+
+//        actionUtil.clickOnElement(product.getaddToCartBtn());
+
+        Thread.sleep(2000);
+
+        jsUtil.clickOnElementUsingJS(product.getaddToCartBtn());
+
+        jsUtil.clickOnElementUsingJS(product.getCartIcon());
+
+
+
+
 
     }
 }

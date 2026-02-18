@@ -21,7 +21,7 @@ public class ProductPagePOM
     private WebElement productPrice;
     @FindBy(xpath="//span[text()='buy now']")
     private WebElement buyNowBtn;
-    @FindBy(xpath="//span[text()='add to cart']")
+    @FindBy(xpath="//button[@id='Add To Cart']")
     private WebElement addToCartBtn;
     @FindBy(xpath="//input[@id='Check Delivery']")
     private WebElement quickDelTextField;
@@ -29,6 +29,8 @@ public class ProductPagePOM
     private WebElement checkButton;
     @FindBy(xpath="//small[@id='locationPopupBlock']")
     private WebElement findMyPincodeRBtn;
+    @FindBy(xpath = "//a[@id='cart']")
+    private WebElement cartIcon;
 
     public ProductPagePOM(WebDriver driver)
     {
@@ -68,6 +70,11 @@ public class ProductPagePOM
 
     public WebElement getaddToCartBtn() {
         return addToCartBtn;
+    }
+
+    public WebElement getCartIcon()
+    {
+        return cartIcon;
     }
 
     public WebElement getquickDelTextField() {
