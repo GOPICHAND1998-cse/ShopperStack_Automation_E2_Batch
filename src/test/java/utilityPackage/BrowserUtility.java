@@ -9,53 +9,58 @@ import java.time.Duration;
 
 public class BrowserUtility
 {
-    private WebDriver driver;
+    private ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 
     public void openBrowser(String browser)
     {
         switch (browser.toLowerCase())
         {
             case "chrome":
-                driver = new ChromeDriver();
+                tlDriver.set(new ChromeDriver());
                 break;
             case "edge":
                 System.setProperty("webdriver.edge.driver","./src/test/resources/BrowserDrivers/msedgedriver.exe");
-                driver = new EdgeDriver();
+                tlDriver.set(new EdgeDriver());
                 break;
             case "firefox":
-                driver = new FirefoxDriver();
+                tlDriver.set(new FirefoxDriver());
                 break;
             default: throw new IllegalArgumentException("Wrong  Browser Name");
         }
 
-        driver.manage().deleteAllCookies();
+        getDriver().manage().deleteAllCookies();
     }
 
     public void maximizeBrowser()
     {
-        driver.manage().window().maximize();
+        getDriver().manage().window().maximize();
     }
 
     public void openUrl(String url)
     {
-        driver.get(url);
+        getDriver().get(url);
     }
 
     public WebDriver getDriver()
     {
-        return driver;
+        return tlDriver.get();
     }
 
     public void closeBrowser()
     {
-        if (driver!=null)
+        if (getDriver()!=null)
         {
-           driver.quit();
+           getDriver().quit();
         }
     }
 
     public void waitForElements(int num)
     {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(num));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(num));
     }
+
+    public void refreshBrowser()
+        {
+                getDriver().navigate().refresh();
+        }
 }

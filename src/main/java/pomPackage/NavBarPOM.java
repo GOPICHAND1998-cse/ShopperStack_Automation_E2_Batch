@@ -28,6 +28,12 @@ public class NavBarPOM
     @FindBy(xpath = "//a[@id='beautyProducts']")
     private WebElement beautyLink;
 
+    @FindBy(xpath = "//button[@aria-label='Account settings']")
+    private WebElement profileIcon;
+
+    @FindBy(xpath = "//li[text()='Logout']")
+    private WebElement logoutLink;
+
     public NavBarPOM(WebDriver driver)
     {
         PageFactory.initElements(driver,this);
@@ -59,5 +65,13 @@ public class NavBarPOM
 
     public WebElement getBeautyLink() {
         return beautyLink;
+    }
+
+    public WebElement getProfileIcon() {
+        return profileIcon;
+    }
+
+    public WebElement getLogoutLink() {
+        return logoutLink;
     }
 }

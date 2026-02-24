@@ -61,4 +61,20 @@ public class ActionsUtility
                     .perform();
         }
     }
+
+    public void moveMyMouse(int x,int y)
+    {
+        action.moveByOffset(x,y).perform();
+    }
+
+    public void doRefresh()
+    {
+        action.pause(Duration.ofSeconds(2))
+                .keyDown(Keys.CONTROL)
+                .sendKeys("R")
+                .keyUp(Keys.CONTROL)
+                .perform();
+    }
+
+
 }

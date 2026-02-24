@@ -32,4 +32,12 @@ public class LogInPagePOM
     public WebElement getLogInButton() {
         return logInButton;
     }
+
+
+    public void performLogIn(String email,String password)
+    {
+        getEmailField().sendKeys(email);
+        getPasswordField().sendKeys(password);
+        getLogInButton().click();
+    }
 }
