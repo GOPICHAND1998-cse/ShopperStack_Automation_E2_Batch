@@ -31,7 +31,7 @@ public class NavBarPOM
     @FindBy(xpath = "//button[@aria-label='Account settings']")
     private WebElement profileIcon;
 
-    @FindBy(xpath = "//li[text()='Logout']")
+    @FindBy(xpath = "//li[text()='Logout' and @role='menuitem']")
     private WebElement logoutLink;
 
     public NavBarPOM(WebDriver driver)

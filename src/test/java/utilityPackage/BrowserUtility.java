@@ -54,6 +54,11 @@ public class BrowserUtility
         }
     }
 
+    public void waitForPageToLoad(int num)
+    {
+        getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(num));
+    }
+
     public void waitForElements(int num)
     {
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(num));
