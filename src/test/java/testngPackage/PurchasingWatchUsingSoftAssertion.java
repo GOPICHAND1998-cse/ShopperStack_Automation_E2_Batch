@@ -24,7 +24,7 @@ public class PurchasingWatchUsingSoftAssertion extends PurchasingWatchBaseClass
         sAssert.assertAll();
     }
 
-    @Test
+    @Test(dependsOnMethods = "openHomepage")
     public void selectDesiredProduct()
     {
         SoftAssert sAssert = new SoftAssert();
@@ -40,12 +40,22 @@ public class PurchasingWatchUsingSoftAssertion extends PurchasingWatchBaseClass
         sAssert.assertAll();
     }
 
-    @Test
-    public void AddTocart()
+    @Test(dependsOnMethods = "selectDesiredProduct")
+    public void addTocart()
     {
         SoftAssert sAssert = new SoftAssert();
 
         jsUtil.clickOnElementUsingJS(product.getaddToCartBtn());
+
+        try
+        {
+           Thread.sleep(2000);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         sAssert.assertEquals(product.getaddToCartBtn().getText().toLowerCase(),"added","The Product is not added to Cart");
         Reporter.log("The product is added to Cart",true);
 

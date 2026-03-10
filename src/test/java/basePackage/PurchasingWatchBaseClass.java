@@ -37,7 +37,7 @@ public class PurchasingWatchBaseClass
     public NavBarPOM nav;
 
 
-    @BeforeSuite
+    @BeforeClass
     public void loadData()
     {
         try
@@ -74,7 +74,7 @@ public class PurchasingWatchBaseClass
         }
     }
 
-    @BeforeTest
+    @BeforeClass(dependsOnMethods = "loadData")
     public void loadPage()
     {
         try
@@ -96,10 +96,12 @@ public class PurchasingWatchBaseClass
         }
     }
 
-    @BeforeClass
+    @BeforeClass(dependsOnMethods = "loadPage")
     public void doLogIn()
     {
         SoftAssert sAssert = new SoftAssert();
+
+        browserUtil.refreshBrowser();
 
         jsUtil.clickOnElementUsingJS(nav.getLogInButton());
 
@@ -123,5 +125,9 @@ public class PurchasingWatchBaseClass
             e.printStackTrace();
         }
         actionUtil.clickOnElement(nav.getLogoutLink());
+
+        browserUtil.closeBrowser();
     }
+
+
 }
