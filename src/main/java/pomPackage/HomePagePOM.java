@@ -31,40 +31,7 @@ public class HomePagePOM
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
-    public WebElement getMenLink()
-    {
-        return driver.findElement(menLink);
-    }
 
-    public WebElement getWomenLink()
-    {
-        return driver.findElement(womenLink);
-    }
-
-    public WebElement getLogInButton()
-    {
-        return driver.findElement(logInButton);
-    }
-
-    public WebElement getKidsLink()
-    {
-        return driver.findElement(kidsLink);
-    }
-
-    public WebElement getElectronicsLink()
-    {
-        return driver.findElement(electronicLink);
-    }
-
-    public WebElement getBeautyLink()
-    {
-        return driver.findElement(beautyLink);
-    }
-
-    public WebElement getDesiredProd()
-    {
-        return driver.findElement(desiredProd);
-    }
 
     public List<WebElement> getAllProducts()
     {
