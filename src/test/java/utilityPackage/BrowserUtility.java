@@ -2,6 +2,7 @@ package utilityPackage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -9,14 +10,16 @@ import java.time.Duration;
 
 public class BrowserUtility
 {
-    private ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
+    private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 
     public void openBrowser(String browser)
     {
         switch (browser.toLowerCase())
         {
             case "chrome":
-                tlDriver.set(new ChromeDriver());
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--headless");
+                tlDriver.set(new ChromeDriver(options));
                 break;
             case "edge":
                 System.setProperty("webdriver.edge.driver","./src/test/resources/BrowserDrivers/msedgedriver.exe");

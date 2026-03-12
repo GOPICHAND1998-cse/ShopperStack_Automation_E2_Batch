@@ -11,6 +11,26 @@ public class AddAppleAndToothBrushToCart extends ParallelMethodBaseClass
         try
         {
             home.selectDesiredProduct("APPLE");
+
+            jsUtil.clickOnElementUsingJS(product.getaddToCartBtn());
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Test
+    public void addToothBrush()
+    {
+        try
+        {
+            home.selectDesiredProduct("ORAL B");
+
+            jsUtil.clickOnElementUsingJS(product.getaddToCartBtn());
         }
         catch (Exception e)
         {

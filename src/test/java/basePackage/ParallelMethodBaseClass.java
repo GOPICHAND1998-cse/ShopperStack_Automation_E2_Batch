@@ -29,7 +29,7 @@ public class ParallelMethodBaseClass
     public ProductPagePOM product;
 
 
-    @BeforeTest
+    @BeforeMethod
     public void loadData()
     {
         try
@@ -50,11 +50,11 @@ public class ParallelMethodBaseClass
 
     }
 
-    @BeforeMethod
+    @BeforeMethod(dependsOnMethods = "loadData")
     public void performSetUp()
     {
         browserUtil.openBrowser(browser);
-        browserUtil.maximizeBrowser();
+//        browserUtil.maximizeBrowser();
         browserUtil.waitForElements(30);
         browserUtil.openUrl(url);
 
@@ -71,7 +71,9 @@ public class ParallelMethodBaseClass
         actionUtil = new ActionsUtility(driver);
         jsUtil = new JSUtility(driver);
 
-        jsUtil.clickOnElementUsingJS(navBar.getLogInButton());
+//        jsUtil.clickOnElementUsingJS(navBar.getLogInButton());
+
+        actionUtil.clickOnElement(navBar.getLogInButton());
 
         login.performLogIn(email,password);
     }
